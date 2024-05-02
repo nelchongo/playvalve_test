@@ -29,7 +29,7 @@ WITH session_min_max AS (
         -- WE FILTER BY EVENTS JUST TO NOT REINSERT OLD EVENTS
         MD5(t1.user_id::text || t1.page_view_at::text)::UUID NOT IN (SELECT event_id FROM session_table) AND
 		-- WE FETCH EVENTS ON THE SAME SELECTED TIME SLOT
-		page_view_at BETWEEN '{{ start_time }}'::timestamp AND '{{ end_time }}'::timestamp
+		page_view_at BETWEEN '{{ start_time }}'::timestamp AND '{{ end_time }}'::timestamp 
 ), session_bounds AS (
     SELECT
         user_id,
@@ -71,6 +71,7 @@ SELECT
 FROM 
     event_session_match t1
 LEFT JOIN 
-    sessions t2 ON t1.user_id = t2.user_id AND t1.page_view_at BETWEEN t2.min_session_view AND t2.max_session_view
+    sessions t2 ON t1.user_id = t2.user_id AND 
+    t1.page_view_at >= t2.min_session_view AND t1.page_view_at < t2.max_session_view
 ORDER BY 
     t1.user_id, t1.page_view_at;
