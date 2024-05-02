@@ -2,7 +2,8 @@
 This is a Repo for delivering the Play Valve Test
 
 # Folder Structure
-    - playvalve_test
+    playvalve_test
+    └── diagrams/ All diagrams created can be opened in Draw.io
     └── question_1/ Repo and Dependency question
     └── question_2/ Data Modeling question
     └── question_3/ Data Architecture question

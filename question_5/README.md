@@ -34,7 +34,7 @@ There are some arguments that you can pass for this test like this
 
     python3 run.py --v <desired V value:int> --coins <desired coins:array>
 
-Here an example
+Here is an example
 
     python3 run.py --v 30 --coins 25,10,5
 
